@@ -1,0 +1,155 @@
+﻿<Window x:Class="PersonalFinanceTracker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Личный финансовый трекер" Height="600" Width="900"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Segoe UI">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Grid.Row="0" Orientation="Vertical">
+
+            <!-- Панель с заголовком и кнопками -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Личный финансовый трекер" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
+
+                <!-- Кнопки сделал с одинаковым отступом и высотой "чтобы было ровно" -->
+                <Button x:Name="SaveButton" Content="💾 Сохранить" Click="SaveButton_Click" Margin="15,0,0,0" Height="28" Padding="5,0"/>
+                <Button x:Name="LoadButton" Content="📂 Загрузить" Click="LoadButton_Click" Margin="5,0,0,0" Height="28" Padding="5,0"/>
+                <Button x:Name="AddTestDataButton" Content="➕ Тест данные" Click="AddTestDataButton_Click" Margin="5,0,0,0" Height="28" Padding="5,0"/>
+
+                <TextBlock Text="Месяц:" Margin="20,0,5,0" VerticalAlignment="Center"/>
+                <ComboBox x:Name="MonthComboBox" Width="100" SelectionChanged="MonthComboBox_SelectionChanged" VerticalAlignment="Center"/>
+
+                <TextBlock Text="Год:" Margin="10,0,5,0" VerticalAlignment="Center"/>
+                <ComboBox x:Name="YearComboBox" Width="80" SelectionChanged="YearComboBox_SelectionChanged" VerticalAlignment="Center"/>
+            </StackPanel>
+
+
+            <StackPanel x:Name="StatisticsPanel" Orientation="Horizontal" Margin="0,0,0,5" Background="Azure">
+                <TextBlock Text="Общий доход за месяц: " FontWeight="Bold"/>
+                <TextBlock Text="{Binding TotalIncome}" Foreground="Green" Margin="5,0"/>
+                <TextBlock Text="Общий расход за месяц: " FontWeight="Bold" Margin="20,0,0,0"/>
+                <TextBlock Text="{Binding TotalExpense}" Foreground="Red" Margin="5,0"/>
+                <TextBlock Text="Итого: " FontWeight="Bold" Margin="20,0,0,0"/>
+                <TextBlock Text="{Binding TotalBalance}" Margin="5,0"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Основное содержимое с вкладками -->
+        <TabControl Grid.Row="1" Margin="0,5,0,0">
+
+            <!-- Вкладка с транзакциями -->
+            <TabItem Header="Транзакции">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Группированные транзакции -->
+                    <GroupBox Grid.Row="0" Header="Транзакции по типам" Margin="5" Padding="5">
+                        <DataGrid x:Name="TransactionsDataGrid" AutoGenerateColumns="False" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Дата" Binding="{Binding Date, StringFormat=dd.MM.yyyy}" Width="100"/>
+                                <DataGridTextColumn Header="Тип" Binding="{Binding Type}" Width="80"/>
+                                <DataGridTextColumn Header="Сумма" Binding="{Binding Amount}" Width="80"/>
+                                <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="*"/>
+                                <DataGridTextColumn Header="Кошелек" Binding="{Binding WalletName}" Width="100"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+
+                    <!-- Топ-3 траты -->
+                    <GroupBox Grid.Row="1" Header="Самые большие траты по кошелькам" Margin="5" Padding="5">
+                        <DataGrid x:Name="TopExpensesDataGrid" AutoGenerateColumns="False" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Кошелек" Binding="{Binding WalletName}" Width="100"/>
+                                <DataGridTextColumn Header="Дата" Binding="{Binding Date, StringFormat=dd.MM.yyyy}" Width="100"/>
+                                <DataGridTextColumn Header="Сумма" Binding="{Binding Amount}" Width="80"/>
+                                <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+            <!-- Вкладка с кошельками -->
+            <TabItem Header="Кошельки">
+                <DataGrid x:Name="WalletsDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Margin="5">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="120"/>
+                        <DataGridTextColumn Header="Валюта" Binding="{Binding Currency}" Width="80"/>
+                        <DataGridTextColumn Header="Начальный баланс" Binding="{Binding InitialBalance}" Width="120"/>
+                        <DataGridTextColumn Header="Текущий баланс" Binding="{Binding CurrentBalance}" Width="120"/>
+                        <DataGridTextColumn Header="Кол-во транзакций" Binding="{Binding Transactions.Count}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+
+            <!-- Вкладка "Добавить транзакцию" -->
+            <TabItem Header="Добавить транзакцию">
+                <Border Margin="10" Padding="15" BorderBrush="LightGray" BorderThickness="1" CornerRadius="5" Background="#F9F9F9" VerticalAlignment="Top">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="300"/>
+                        </Grid.ColumnDefinitions>
+
+
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Кошелек:" Margin="0,5,10,5" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="WalletComboBox" Grid.Row="0" Grid.Column="1" Margin="5" DisplayMemberPath="Name"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Тип:" Margin="0,5,10,5" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="TypeComboBox" Grid.Row="1" Grid.Column="1" Margin="5">
+                            <ComboBoxItem Content="Доход" Tag="Income"/>
+                            <ComboBoxItem Content="Расход" Tag="Expense"/>
+                        </ComboBox>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Сумма:" Margin="0,5,10,5" VerticalAlignment="Center"/>
+                        <TextBox x:Name="AmountTextBox" Grid.Row="2" Grid.Column="1" Margin="5"/>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Описание:" Margin="0,5,10,5" VerticalAlignment="Center"/>
+                        <TextBox x:Name="DescriptionTextBox" Grid.Row="3" Grid.Column="1" Margin="5"/>
+                        <Button x:Name="AddTransactionButton" Grid.Row="4" Grid.Column="1" 
+                                Content="Добавить" Margin="5,10,5,5" 
+                                Click="AddTransactionButton_Click" HorizontalAlignment="Left" 
+                                MinWidth="100" Height="30" Background="LightGreen" FontWeight="Bold"/>
+
+                        <!-- Блок для ошибок -->
+                        <TextBlock x:Name="ErrorTextBlock" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Foreground="Red" TextWrapping="Wrap"/>
+
+                    </Grid>
+                </Border>
+            </TabItem>
+
+        </TabControl>
+
+        <!--Статус бар.-->
+        <StatusBar Grid.Row="2" Margin="0,5,0,0">
+            <StatusBarItem>
+                <TextBlock x:Name="StatusTextBlock" Text="Готов"/>
+            </StatusBarItem>
+
+            <!-- Отладка переехала сюда, как "второстепенный" статус -->
+            <StatusBarItem>
+                <TextBlock x:Name="DebugTextBlock" Text="Отладка: ..." Margin="20,0,0,0" Foreground="Gray"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
