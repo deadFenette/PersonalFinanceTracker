@@ -1,0 +1,154 @@
+[
+  {
+    "Id": 1,
+    "Name": "Карта Сбербанка",
+    "Currency": "RUB",
+    "InitialBalance": 25000.0,
+    "Transactions": [
+      {
+        "Id": 1,
+        "Date": "2025-11-05T10:30:00",
+        "Amount": 40000.0,
+        "Type": 0,
+        "Description": "Аванс",
+        "WalletId": 1
+      },
+      {
+        "Id": 2,
+        "Date": "2025-11-05T18:15:00",
+        "Amount": 3500.0,
+        "Type": 1,
+        "Description": "Продукты во ВкусВилл",
+        "WalletId": 1
+      },
+      {
+        "Id": 3,
+        "Date": "2025-11-07T12:30:00",
+        "Amount": 5500.0,
+        "Type": 1,
+        "Description": "Оплата ЖКХ",
+        "WalletId": 1
+      },
+      {
+        "Id": 4,
+        "Date": "2025-11-10T08:45:00",
+        "Amount": 650.0,
+        "Type": 1,
+        "Description": "Яндекс.Такси",
+        "WalletId": 1
+      },
+      {
+        "Id": 5,
+        "Date": "2025-11-12T19:20:00",
+        "Amount": 4200.0,
+        "Type": 1,
+        "Description": "Ужин в 'Кофемании'",
+        "WalletId": 1
+      },
+      {
+        "Id": 6,
+        "Date": "2025-11-15T14:10:00",
+        "Amount": 8000.0,
+        "Type": 1,
+        "Description": "Интернет-заказ Ozon",
+        "WalletId": 1
+      },
+      {
+        "Id": 7,
+        "Date": "2025-11-20T10:30:00",
+        "Amount": 60000.0,
+        "Type": 0,
+        "Description": "Зарплата",
+        "WalletId": 1
+      },
+      {
+        "Id": 8,
+        "Date": "2025-11-20T11:00:00",
+        "Amount": 299.0,
+        "Type": 1,
+        "Description": "Подписка Яндекс.Плюс",
+        "WalletId": 1
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "Name": "Наличные",
+    "Currency": "RUB",
+    "InitialBalance": 5000.0,
+    "Transactions": [
+      {
+        "Id": 9,
+        "Date": "2025-11-06T13:20:00",
+        "Amount": 450.0,
+        "Type": 1,
+        "Description": "Обед в столовой",
+        "WalletId": 2
+      },
+      {
+        "Id": 10,
+        "Date": "2025-11-10T09:45:00",
+        "Amount": 1000.0,
+        "Type": 1,
+        "Description": "Пополнение 'Тройки'",
+        "WalletId": 2
+      },
+      {
+        "Id": 11,
+        "Date": "2025-11-14T17:30:00",
+        "Amount": 250.0,
+        "Type": 1,
+        "Description": "Кофе 'Stars Coffee'",
+        "WalletId": 2
+      }
+    ]
+  },
+  {
+    "Id": 3,
+    "Name": "Вклад в Тинькофф",
+    "Currency": "RUB",
+    "InitialBalance": 300000.0,
+    "Transactions": [
+      {
+        "Id": 12,
+        "Date": "2025-11-25T10:15:00",
+        "Amount": 2500.0,
+        "Type": 0,
+        "Description": "Проценты по вкладу",
+        "WalletId": 3
+      },
+      {
+        "Id": 13,
+        "Date": "2025-11-28T17:50:00",
+        "Amount": 50000.0,
+        "Type": 1,
+        "Description": "Частичное снятие на карту",
+        "WalletId": 3
+      }
+    ]
+  },
+  {
+    "Id": 4,
+    "Name": "Брокерский счет (USD)",
+    "Currency": "USD",
+    "InitialBalance": 2000.0,
+    "Transactions": [
+      {
+        "Id": 14,
+        "Date": "2025-11-10T15:40:00",
+        "Amount": 300.0,
+        "Type": 1,
+        "Description": "Покупка акций (AAPL)",
+        "WalletId": 4
+      },
+      {
+        "Id": 15,
+        "Date": "2025-11-26T12:25:00",
+        "Amount": 50.0,
+        "Type": 0,
+        "Description": "Дивиденды (MSFT)",
+        "WalletId": 4
+      }
+    ]
+  }
+]
