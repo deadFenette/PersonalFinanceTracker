@@ -8,4 +8,10 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="PersonalFinanceTracker.Tests\**" />
+    <EmbeddedResource Remove="PersonalFinanceTracker.Tests\**" />
+    <None Remove="PersonalFinanceTracker.Tests\**" />
+  </ItemGroup>
+
 </Project>
