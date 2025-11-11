@@ -5,7 +5,7 @@ VisualStudioVersion = 17.14.36623.8 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinanceTracker", "PersonalFinanceTracker.csproj", "{4F11111C-3C61-4CDD-8392-1EF1165AB060}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinanceTracker.Tests", "..\PersonalFinanceTracker.Tests\PersonalFinanceTracker.Tests.csproj", "{2C75736F-5052-4D62-A1CE-3F6A05DC75AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinanceTracker.Tests", "PersonalFinanceTracker.Tests\PersonalFinanceTracker.Tests.csproj", "{2C75736F-5052-4D62-A1CE-3F6A05DC75AB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{754FC069-D67B-A9D7-50A1-8D1CA196D8F1}"
 	ProjectSection(SolutionItems) = preProject
